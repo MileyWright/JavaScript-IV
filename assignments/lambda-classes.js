@@ -21,7 +21,7 @@ class Instructor extends Person{
     demo(subject) {
         return `Today we are learning about ${subject}`
     }
-    grade(student) {
+    grade(student, subject) {
         return `${student.name} recieves a perfect score on ${subject}.`
     }
 }
@@ -34,7 +34,7 @@ class Student extends Person {
         this.favSubjects = studentAttr.favSubjects;
     }
     listsSubjects () {
-        for (i = 0; i <= this.favSubjects.length, i++){
+        for (let i = 0; i <= this.favSubjects.length; i++){
             console.log(this.favSubjects[i] )
         }
     }
@@ -48,13 +48,51 @@ class Student extends Person {
 
 class projectManager extends Instructor{
     constructor(pmAttr) {
+        super(pmAttr);
         this.gradClassName = pmAttr.gradClassName;
         this.favInstructor = pmAttr.favInstructor;
     }
     standup(channel) {
         return `${this.name} announces to ${channel}, @channel standy times!`
     }
-    debugCode () {
-        
+    debugCode (subject) {
+        return `${this.name} debugs ${student.name}'s code on ${subject}.`
     }
 }
+
+const instructor = new Instructor({
+    name: 'Alex',
+    age: 29,
+    location: 'Atlanta',
+    speciality: 'Redux',
+    favLanguage: 'JavaScript',
+    catchPhrase: 'Dont forget the homies'
+})
+
+const student = new Student ({
+    name: 'Karla',
+    age: 32,
+    location: 'Delaware',
+    previousBackground: 'Sales',
+    className: 'WEB4',
+    favSubjects: ['LESS', 'HTML', 'CSS']
+})
+
+const PM = new projectManager({
+    name: 'Sara',
+    age: 24,
+    location: 'New York',
+    gradClassName: 'WEB1',
+    favInstructor: 'Josh',
+})
+
+console.log(instructor.speak());
+console.log(instructor.demo('Javascript'));
+console.log(instructor.grade( student, 'CSS'));
+console.log(student.speak());
+student.listsSubjects();
+console.log(student.PRAssignment("Redux"));
+console.log(student.sprintChallenge('Responsive Design'));
+console.log(PM.speak());
+console.log(PM.standup('WEB12'));
+console.log(PM.debugCode('JavaScript'));
